@@ -1,0 +1,64 @@
+# Docker Anaconda tutorial
+
+#In Google Cloud Console, create a FREE VM with region = us-west1 + machine = f1-micro + ubuntu 18 minimal:
+# ssh in google panel and create new sudo user:
+sudo adduser user3 &&
+sudo usermod -aG sudo user3 &&
+sudo apt-get update &&
+sudo apt-get install -y nano &&
+sudo nano /etc/ssh/sshd_config
+# change the line to passwords: PasswordAuthentication yes
+
+#install docker-ce & anaconda3 container (source: https://medium.com/@patrickmichelberger/getting-started-with-anaconda-docker-b50a2c482139)
+sudo apt-get update &&
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common &&
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - &&
+sudo apt-key fingerprint 0EBFCD88 &&
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable" &&
+sudo apt-get update &&
+sudo apt-get install -y docker-ce &&
+sudo docker pull continuumio/anaconda3
+
+
+# run Jupyter Lab Docker:
+sudo /usr/bin/docker run -d --restart=always -i -t -p 8888 -v /home/user2:/home/ -e USERID=1003 continuumio/anaconda3 /opt/conda/bin/jupyter lab --ip='*' --port=8888 --no-browser --NotebookApp.token='mila120879' --allow-root --notebook-dir=/home/
+
+# configure nginx:
+sudo nano /etc/nginx/conf.d/jupyter.conf
+# paste this to the file:
+##################################
+
+map $http_upgrade $connection_upgrade {
+        default upgrade;
+        ''      close;
+}
+
+server {
+        listen 80;
+        server_name py.inova.life;
+
+        location / {
+                proxy_pass            http://172.17.0.3:8888;
+                # or your internal ip address accordingly to "sudo iptables -L"
+                proxy_set_header      Host $host;
+                proxy_http_version    1.1;
+                proxy_set_header      Upgrade $http_upgrade;
+                proxy_set_header      Connection $connection_upgrade;
+        }
+}
+##################################
+sudo service nginx restart
+
+
+#Install SSL Certificate for https (details at https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx):
+# IF Certbot not installed:
+sudo apt-get update &&
+sudo apt-get install software-properties-common &&
+sudo add-apt-repository ppa:certbot/certbot &&
+sudo apt-get update &&
+sudo apt-get install -y python-certbot-nginx &&
+
+sudo certbot --nginx
