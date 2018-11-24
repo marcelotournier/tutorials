@@ -7,8 +7,10 @@ sudo adduser user3 &&
 sudo usermod -aG sudo user3 &&
 sudo apt-get update &&
 sudo apt-get install -y nano &&
-sudo nano /etc/ssh/sshd_config
-# change the line to passwords: PasswordAuthentication yes
+# change the line in /etc/ssh/sshd_config from "PasswordAuthentication no" to "PasswordAuthentication yes":
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config-backup &&
+sed -e "s/PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config > /etc/ssh/sshd_config2 && 
+mv /etc/ssh/sshd_config2 /etc/ssh/sshd_config &&
 systemctl restart ssh
 su user3
 
