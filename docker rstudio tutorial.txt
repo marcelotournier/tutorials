@@ -38,7 +38,7 @@ id
 
 # Customize the password in the argument " PASSWORD=YOUR_PASSWORD_HERE ". Your username will be "rstudio"
 # run the Docker container:
-sudo /usr/bin/docker run -d --restart=always -i -t -e PASSWORD=YOUR_PASSWORD_HERE -e USERID=1003 --rm -p 8787 -v /home/user2:/home/rstudio/ rocker/tidyverse
+sudo /usr/bin/docker run -d --restart=always -i -t -e PASSWORD=YOUR_PASSWORD_HERE -e USERID=1003 -p 8787 -v /home/user2:/home/rstudio/ rocker/tidyverse
 
 
 #install nginx
