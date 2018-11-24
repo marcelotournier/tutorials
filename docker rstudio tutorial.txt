@@ -8,7 +8,7 @@ sudo apt-get update &&
 sudo apt-get install -y nano &&
 sudo nano /etc/ssh/sshd_config
 # change the line: "PasswordAuthentication yes"
-
+systemctl restart ssh
 su user3
 
 # install docker in ubuntu:
