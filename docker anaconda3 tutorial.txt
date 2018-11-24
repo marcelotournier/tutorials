@@ -1,6 +1,7 @@
 # Docker Anaconda tutorial
 
-#In Google Cloud Console, create a FREE VM with region = us-west1 + machine = f1-micro + ubuntu 18 minimal:
+#In Google Cloud Console, create a FREE VM in region = us-west1 , machine = f1-micro , ubuntu 18 minimal , enable http/https
+#In Google Console > firewall > open port: tcp 8888
 # ssh in google panel and create new sudo user:
 sudo adduser user3 &&
 sudo usermod -aG sudo user3 &&
