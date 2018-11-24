@@ -38,7 +38,7 @@ map $http_upgrade $connection_upgrade {
 
 server {
         listen 80;
-        server_name py.inova.life;
+        server_name YOUR_IP_OR_SERVER_NAME_HERE;
 
         location / {
                 proxy_pass            http://172.17.0.3:8888;
@@ -54,6 +54,7 @@ sudo service nginx restart
 
 
 #Install SSL Certificate for https (details at https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx):
+# IMPORTANT! You can only put a SSL Certificate this way if you have a registered domain (Google Cloud IPs won´t work...)
 # IF Certbot not installed:
 sudo apt-get update &&
 sudo apt-get install software-properties-common &&
