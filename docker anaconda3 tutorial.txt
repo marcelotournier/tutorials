@@ -12,6 +12,7 @@ cp /etc/ssh/sshd_config /etc/ssh/sshd_config-backup &&
 sed -e "s/PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config > /etc/ssh/sshd_config2 && 
 mv /etc/ssh/sshd_config2 /etc/ssh/sshd_config &&
 systemctl restart ssh
+
 su user3
 
 #install docker-ce & anaconda3 container (source: https://medium.com/@patrickmichelberger/getting-started-with-anaconda-docker-b50a2c482139)
