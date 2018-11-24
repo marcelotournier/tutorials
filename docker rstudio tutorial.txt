@@ -11,6 +11,7 @@ cp /etc/ssh/sshd_config /etc/ssh/sshd_config-backup &&
 sed -e "s/PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config > /etc/ssh/sshd_config2 && 
 mv /etc/ssh/sshd_config2 /etc/ssh/sshd_config &&
 systemctl restart ssh
+
 su user3
 
 # install docker in ubuntu:
