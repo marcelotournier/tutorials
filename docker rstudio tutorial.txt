@@ -35,8 +35,10 @@ sudo docker pull rocker/tidyverse &&
 id
 # $>uid=1003(user2) gid=1004(user2) groups=1004(user2),27(sudo)
 
-#run the container to test:
-sudo /usr/bin/docker run -d --restart=always -i -t -e PASSWORD=101979 -e USERID=1003 --rm -p 8787 -v /home/user2:/home/rstudio/ rocker/tidyverse
+
+# Customize the password in the argument " PASSWORD=YOUR_PASSWORD_HERE ". Your username will be "rstudio"
+# run the Docker container:
+sudo /usr/bin/docker run -d --restart=always -i -t -e PASSWORD=YOUR_PASSWORD_HERE -e USERID=1003 --rm -p 8787 -v /home/user2:/home/rstudio/ rocker/tidyverse
 
 
 #install nginx
@@ -68,6 +70,7 @@ server {
 
 ##################################
 #Install SSL Certificate for https (more details at https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx)
+# IMPORTANT! You can only put a SSL Certificate this way if you have a registered domain (Google Cloud IPs won´t work...)
 sudo apt-get update &&
 sudo apt-get install software-properties-common &&
 sudo add-apt-repository ppa:certbot/certbot &&
