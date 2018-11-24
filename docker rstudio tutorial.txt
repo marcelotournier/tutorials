@@ -9,6 +9,8 @@ sudo apt-get install -y nano &&
 sudo nano /etc/ssh/sshd_config
 # change the line: "PasswordAuthentication yes"
 
+su user3
+
 # install docker in ubuntu:
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1
 
