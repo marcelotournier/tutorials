@@ -24,7 +24,11 @@ sudo docker pull continuumio/anaconda3
 
 
 # run Jupyter Lab Docker:
-sudo /usr/bin/docker run -d --restart=always -i -t -p 8888 -v /home/user2:/home/ -e USERID=1003 continuumio/anaconda3 /opt/conda/bin/jupyter lab --ip='*' --port=8888 --no-browser --NotebookApp.token='mila120879' --allow-root --notebook-dir=/home/
+# Your password in Jupyter Lab will be the string at " --NotebookApp.token='YOUR_PASSWORD_HERE' ":
+
+sudo /usr/bin/docker run -d --restart=always -i -t -p 8888 -v /home/user2:/home/ -e USERID=1003 continuumio/anaconda3 /opt/conda/bin/jupyter lab --ip='*' --port=8888 --no-browser --NotebookApp.token='YOUR_PASSWORD_HERE' --allow-root --notebook-dir=/home/
+
+
 
 # configure nginx:
 sudo nano /etc/nginx/conf.d/jupyter.conf
