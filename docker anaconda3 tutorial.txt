@@ -9,7 +9,7 @@ sudo apt-get update &&
 sudo apt-get install -y nano &&
 sudo nano /etc/ssh/sshd_config
 # change the line to passwords: PasswordAuthentication yes
-
+systemctl restart ssh
 su user3
 
 #install docker-ce & anaconda3 container (source: https://medium.com/@patrickmichelberger/getting-started-with-anaconda-docker-b50a2c482139)
